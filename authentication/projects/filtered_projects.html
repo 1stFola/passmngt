@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="container">
+    <h1>Searched entry will be here</h1>
+    <br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="filter">Enter search key here</label>
+        <input name="filter" type="text">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if projects %}
+        {% for user_password in user_passwords %}
+            <divc class="col-md-10">
+                <div clas="row">
+                    <div class="">
+                        <div>
+                            <h6>Password</h6>
+                            <small>{{ user_password.id}}</small>
+                        </div>
+                        <div>
+                        <h6>Website</h6>
+                        <small>{{ user_password.website }}</small>
+                        <br>
+                        <small>{{ project.date_created}}</small>
+                        </div>                   
+                    </div>
+                </div>
+                <br>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1>Nothing to show here</h1>
+    {% endif %}
+</div>
+{% endblock %}

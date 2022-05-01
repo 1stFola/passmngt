@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+<!-- {% extends "templates/authentication/index.html" %} -->
+
+
+{% block page_content %}
+<div class="container">
+    <a style="text-decoration: none; color: green;" href="{% url 'view_all_projects' %}">
+    <h1>Passwords Created</h1>
+    </a>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'create_project' %}">
+                <button>Create A Password</button>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <form action="" method="post"> 
+            {% csrf_token %}
+            <input type="text" name="filter">
+            <button type="search" >Search</button>
+        </form>
+    </div>
+    <div class="row">
+        {% for project in projects %}  <!--for loop using ginger, to display-->
+        <div class="col-md-4 my-2">
+            <a style="text-decoration: none; color: black;" href="{{ project.id }}" >
+                <div class="card">
+                    <div class="">
+                        <div>
+                            <h6>Password</h6>
+                            <small>{{ user_password.id}}</small>
+                        </div>
+                        <div>
+                        <h6>Website</h6>
+                        <small>{{ user_password.website }}</small>
+                        <br>
+                        <small>{{ project.date_created}}</small>
+                        </div>                   
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %} <!--to end the for loop-->
+    </div> 
+</div>
+{% endblock %}

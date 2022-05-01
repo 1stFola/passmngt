@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+ 
+
+<h3>Welcome to Fola's PM!</h3>
+
+
+{% if user.is_authenticated %}
+<h3>Hello {{ request.user.username }}!</h3>
+<h4>You're successfully signed in.</h4>
+<button type="submit"><a href="/signout">SignOut</a></button>
+
+<div class="row">
+<div class="">
+    <a href="{% url 'create_project' %}">
+        <button>Create a password</button>
+    </a>
+</div>
+<div class="">
+    <form action="" method="post"> 
+        {% csrf_token %}
+        <a href="{% url 'project_detail' %}">
+        <input type="text" name="filter">
+        <button type="search" >Search</button>
+        </a>
+    </form>
+</div>
+<div class="row">
+    {% for user_password in user_passwords %}  <!--for loop using ginger, to display-->
+    <div class="">
+        <a style="text-decoration: none; color: black;" href="{{ user_password.id }}" >
+            <div class="card">
+                <div class="">
+                    <span> {{ user_password.website }}</span>
+                </div>
+                <small>{{ user_password.id }}</small>
+            </div>
+        </a>
+    </div>
+    {% endfor %} <!--to end the for loop-->
+</div>
+
+</div>
+
+{% else %}
+<button type="submit"><a href="/signup">SignUp</a></button>
+<br/>
+<br/>
+<button type="submit"><a href="/signin">SignIn</a></button>
+{% endif %}
+
+{% endblock %}

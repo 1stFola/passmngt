@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="container">
+    <div class="">
+        {% if user_password %}
+            <div>
+                <span>{{ user_password.id}}</span>
+            </div>
+            <div class="">
+                <h6>Website</h6>
+                <small>{{ user_password.website }}</small>
+                <br>
+                <h6>Password</h6>
+                <small>{{ user_password.password }}</small>
+                <br>
+                <small>{{ user_password.date_created}}</small>
+            </div>
+        {% else %}
+            <h1>Nothing to display</h1>
+        {% endif %}
+    </div>
+    <div class="">
+        <a href="{% url 'view_all_projects' %}"> <button> View all entries </button></a> <!--to make the project return to the main page. the url is named in the urls.py-->
+
+        <a href="{% url 'update_project' user_password.id %}"><button>Update a password</button></a>
+
+        <a href="{% url 'delete' user_password.id %}"><button>Delete</button></a>
+    </div>
+</div>
+{% endblock %}

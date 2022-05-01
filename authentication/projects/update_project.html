@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<h1>Create your projects here!</h1>
+<br>
+
+<form action="" method="post">
+    {% csrf_token %}  <!--if you want to update something you need csrf token-->
+    {{ form.as_p }}    <!--form from views and  the .as_p from django forms documentation-->
+  <a href="{% url 'home' %}">
+        <button type="submit">Submit</button> 
+    </a>
+</form>
+<a  href="{% url 'home' %}">
+    <button>Back</button>
+</a>
+
+{% endblock %}

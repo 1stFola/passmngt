@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<h1>Create a Password here!</h1>
+<br>
+
+<form action="" method="post">
+    {%csrf_token %}
+    {{ form.as_p }}
+    <a href="{% url 'home' %}">
+        <button type="submit">Submit</button>
+    </a>
+</form>
+<a href="{% url 'home' %}">
+    <button>Cancel</button>
+</a>
+{% endblock %}
